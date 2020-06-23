@@ -7,19 +7,15 @@
 </head>
 <body>
 <h1>Money Management</h1>
-    <form action="" method="POST">
+    <form action="controller.php" method="POST">
         <h3>Add:</h3> 
         Rp.
-        <input type="number" id="outcome" name="outcome">
+        <input type="number" id="money" name="money">
         <select name="type" id="type">
             <option value="income">Outcome</option>
             <option value="outcome">Income</option>
         </select>  <br> <br>
         <button type="submit">Submit</button>
     </form>
-    <input type="date">
 </body>
 </html>
-
-<?php 
-echo "Today is " . date("d / m / y") . "<br>";
