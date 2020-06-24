@@ -1,3 +1,8 @@
+<?php
+    require_once('Connection.php');
+    require_once('Show.php');
+    require_once('ViewRecord.php');
+?>
 <!-- OOP OOP -->
 <html lang="en">
 <head>
@@ -17,5 +22,16 @@
         </select>  <br> <br>
         <button type="submit">Submit</button>
     </form>
+
+    <?php 
+        $record = new ViewRecord();
+        $record->showAllRecord();
+    ?>
+
+        <!-- <table>
+            <tr>
+                <th></th>
+            </tr>
+        </table> -->
 </body>
 </html>
