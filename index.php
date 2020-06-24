@@ -8,21 +8,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Money Management</title>
+    <link href="https://fonts.googleapis.com/css?family=Ultra|Work+Sans:400,500" rel="stylesheet">
 </head>
 <body>
 <h1>Money Management</h1>
     <form action="controller.php" method="POST">
-        <h3>Add:</h3> 
+        <h2>Add:</h2> 
         Rp.
         <input type="number" id="money" name="money" required>
         <select name="type" id="type">
             <option value="outcome">Outcome</option>
             <option value="income">Income</option>
         </select>  <br> <br>
-        <button type="submit" id="submit" name="submit">Submit</button>
+        <button type="submit" id="submit" name="submit" class="button">Submit</button>
     </form>
-    <table>
+    <table class="fl-table">
+    <thead>
+    <tr>
+        <th>Total</th>
+        <th>Type</th>
+        <th>Date</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+
+    <tbody>
     <?php 
         global $totalExpenses;
         global $totalIncome;
@@ -47,13 +59,14 @@
         <?php
             endforeach;
             $balance = $totalIncome - $totalExpenses;
-            echo "Your Expenses: " . $totalExpenses .'<br>';
-            echo "Your Incomes: " . $totalIncome . '<br>';
-            echo "Your Balances: ". $balance . '<br> <br>';  
+            echo "Your Expenses: Rp. " . number_format($totalExpenses,0,",",".") .'<br>';
+            echo "Your Incomes: Rp. " . number_format($totalIncome,0,",",".") . '<br>';
+            echo "Your Balances: Rp. ". number_format($balance,0,",",".") . '<br> <br>';  
         ?>
         <?php else: ?>
         <div> There is no record. </div>
         <?php endif; ?>
+    </tbody>
     </table>
 
         
