@@ -1,8 +1,19 @@
 <?php 
-require_once('add.php');
+require_once('Connection.php');
+require_once('Add.php');
+require_once('Delete.php');
 
-$money = $_POST['money'];
-$type = $_POST['type'];
+if (isset($_POST['submit'])){
+    $money = $_POST['money'];
+    $type = $_POST['type'];
 
-$addDB = new Add($money, $type);
-$addDB->addToDB();
+    $addDB = new Add($money, $type);
+    $addDB->addToDB();
+}
+
+if (isset($_GET['id'])){
+    $id = $_GET['id'];
+
+    $deleteDB = new Delete($id);
+    $deleteDB->DeleteRecord();
+}

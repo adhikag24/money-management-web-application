@@ -15,10 +15,14 @@ class Add extends Connection{
         $insertDB = mysqli_query($this->connect(),"INSERT INTO money_activity (money, type) VALUES ('$this->money', '$this->type')");
 
         if($insertDB){
-            echo "record updated";
+            header('location:index.php');
         }
         else{
             echo "something wrong happen";
         }
+    }
+
+    public function backToIndex(){
+        
     }
 }

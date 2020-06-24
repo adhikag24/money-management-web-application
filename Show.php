@@ -5,7 +5,7 @@ class Show extends Connection{
     
 
     public function showRecord(){
-        $sql = "SELECT money, type, date FROM money_activity";
+        $sql = "SELECT * FROM money_activity";
         $result = $this->connect()->query($sql);
         $numRows = $result->num_rows;
         if ($numRows > 0){

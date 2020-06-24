@@ -15,23 +15,47 @@
     <form action="controller.php" method="POST">
         <h3>Add:</h3> 
         Rp.
-        <input type="number" id="money" name="money">
+        <input type="number" id="money" name="money" required>
         <select name="type" id="type">
-            <option value="income">Outcome</option>
-            <option value="outcome">Income</option>
+            <option value="outcome">Outcome</option>
+            <option value="income">Income</option>
         </select>  <br> <br>
-        <button type="submit">Submit</button>
+        <button type="submit" id="submit" name="submit">Submit</button>
     </form>
-
+    <table>
     <?php 
+        global $totalExpenses;
+        global $totalIncome;
         $record = new ViewRecord();
-        $record->showAllRecord();
-    ?>
+        if (!empty($record->showAllRecord())):
+            foreach($record->showAllRecord() as $data):
+                if ($data['type'] == 'outcome'){
+                    //global $totalExpenses; 
+                    $totalExpenses += $data['money'];
+                }
+                if ($data['type'] == 'income'){
+                    //global $totalIncome;
+                    $totalIncome += $data['money'];
+                }
+                ?>
+                <tr>
+                    <th> <?php echo "Rp. " . number_format($data['money'],0,",",".") ?> </th>
+                    <th> <?php echo $data['type'] ?> </th>
+                    <th> <?php echo $data['date'] ?> </th>
+                    <th> <a href="controller.php?id=<?php echo $data['id']; ?>">Delete</a></th>
+                </tr>      
+        <?php
+            endforeach;
+            $balance = $totalIncome - $totalExpenses;
+            echo "Your Expenses: " . $totalExpenses .'<br>';
+            echo "Your Incomes: " . $totalIncome . '<br>';
+            echo "Your Balances: ". $balance . '<br> <br>';  
+        ?>
+        <?php else: ?>
+        <div> There is no record. </div>
+        <?php endif; ?>
+    </table>
 
-        <!-- <table>
-            <tr>
-                <th></th>
-            </tr>
-        </table> -->
+        
 </body>
 </html>
