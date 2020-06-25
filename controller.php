@@ -17,3 +17,4 @@ if (isset($_GET['id'])){
     $deleteDB = new Delete($id);
     $deleteDB->DeleteRecord();
 }
+
