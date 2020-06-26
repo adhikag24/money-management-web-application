@@ -31,7 +31,15 @@
     <input type="radio"  name="filter" value="income" <?php if(isset($_POST['filter'])){ if($_POST['filter'] == 'income') {$radioButton="income"; echo ' checked="checked"';}} ?>>
     <label for="">Income only</label><br>
     <input type="radio" name="filter" value="outcome"  <?php if(isset($_POST['filter'])){ if($_POST['filter'] == 'outcome') {$radioButton="outcome"; echo ' checked="checked"';}} ?>>
-    <label for="">Outcome only</label> <br><br>
+    <label for="">Outcome only</label> <br>
+
+    <?php if($radioButton == "income" || $radioButton == "outcome"): ?>
+    <input type="radio" name="filter" value="none"  <?php if(isset($_POST['filter'])){ if($_POST['filter'] == 'none') {$radioButton="none"; echo ' checked="checked"';}} ?>>
+    <label for="">None</label> <br><br>
+    <?php else: echo "<br>";
+    endif;
+    ?>
+
     <input type="submit" name="submitRB" value="Apply Changes">
     </form>
     <table class="fl-table">
@@ -72,6 +80,7 @@
             //echo "Your Expenses: Rp. " . number_format($totalExpenses,0,",",".") .'<br>';
             echo "Your Incomes: Rp. " . number_format($totalIncome,0,",",".") . '<br><br>';
             //echo "Your Balances: Rp. ". number_format($balance,0,",",".") . '<br> <br>';  
+  
         ?>
         <?php else: ?>
         <div> There is no record. </div>
@@ -126,10 +135,14 @@
             echo "Your Expenses: Rp. " . number_format($totalExpenses,0,",",".") .'<br>';
             echo "Your Incomes: Rp. " . number_format($totalIncome,0,",",".") . '<br>';
             echo "Your Balances: Rp. ". number_format($balance,0,",",".") . '<br> <br>';  
+            
         ?>
         <?php endif; ?>
     <?php endif; ?>
     </tbody>
     </table>
+
+    
+    
 </body>
 </html>
