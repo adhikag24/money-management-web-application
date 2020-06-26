@@ -2,8 +2,14 @@
     require_once('Connection.php');
     require_once('Show.php');
     require_once('ViewRecord.php');
-    global $radioButton;
-    $radioButton = "none";
+    session_start();
+    if ($_SESSION["option"] == "income"){
+        $_SESSION["option"] = "income";
+    }elseif ($_SESSION["option"] == "outcome"){
+        $_SESSION["option"] = "outcome";
+    }else{
+        $_SESSION["option"] = "none";
+    }
 ?>
 <!-- OOP OOP -->
 <html lang="en">
@@ -28,17 +34,18 @@
     </form>
     <form method="POST">
     <label for="">Filter:</label> <br>
-    <input type="radio"  name="filter" value="income" <?php if(isset($_POST['filter'])){ if($_POST['filter'] == 'income') {$radioButton="income"; echo ' checked="checked"';}} ?>>
+    <input type="radio"  name="filter" value="income" <?php if(isset($_POST['filter'])){ if($_POST['filter'] == 'income') {$_SESSION["option"] = "income"; echo ' checked="checked"';}} ?>>
     <label for="">Income only</label><br>
-    <input type="radio" name="filter" value="outcome"  <?php if(isset($_POST['filter'])){ if($_POST['filter'] == 'outcome') {$radioButton="outcome"; echo ' checked="checked"';}} ?>>
+    <input type="radio" name="filter" value="outcome"  <?php if(isset($_POST['filter'])){ if($_POST['filter'] == 'outcome') {$_SESSION["option"] = "outcome"; echo ' checked="checked"';}} ?>>
     <label for="">Outcome only</label> <br>
 
-    <?php if($radioButton == "income" || $radioButton == "outcome"): ?>
-    <input type="radio" name="filter" value="none"  <?php if(isset($_POST['filter'])){ if($_POST['filter'] == 'none') {$radioButton="none"; echo ' checked="checked"';}} ?>>
+    <?php if($_SESSION["option"] == "income" || $_SESSION["option"] == "outcome"): ?>
+    <input type="radio" name="filter" value="none"  <?php if(isset($_POST['filter'])){ if($_POST['filter'] == 'none') {$_SESSION["option"] = "none"; header('location: index.php'); echo ' checked="checked"';}} ?>>
     <label for="">None</label> <br><br>
     <?php else: echo "<br>";
     endif;
     ?>
+    <?php print_r($_SESSION); ?>
 
     <input type="submit" name="submitRB" value="Apply Changes">
     </form>
@@ -58,7 +65,7 @@
         global $totalIncome;
         $record = new ViewRecord();
 
-        if ($radioButton == "income")://jika user memilih filter income
+        if ($_SESSION["option"] == "income")://jika user memilih filter income
         if (!empty($record->showAllRecord())):
             foreach($record->showAllRecord() as $data):
                 if ($data['type'] == 'outcome'){
@@ -86,7 +93,7 @@
         <div> There is no record. </div>
         <?php endif; ?>
 
-        <?php elseif($radioButton == "outcome"): //jika user memilih filter outcome
+        <?php elseif($_SESSION["option"] == "outcome"): //jika user memilih filter outcome
             if (!empty($record->showAllRecord())):
             foreach($record->showAllRecord() as $data):
                 if ($data['type'] == 'income'){
