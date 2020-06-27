@@ -11,13 +11,12 @@
         $_SESSION["option"] = "none";
     }
 ?>
-<!-- OOP OOP -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Money Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>Money Track</title>
     <link href="https://fonts.googleapis.com/css?family=Ultra|Work+Sans:400,500" rel="stylesheet">
 </head>
 <body>
@@ -25,7 +24,7 @@
     <form action="controller.php" method="POST">
         <h2>Add:</h2> 
         Rp.
-        <input type="number" id="money" name="money" required>
+        <input type="number" id="money" name="money" placeholder="E.g.100000" required>
         <select name="type" id="type">
             <option value="outcome">Outcome</option>
             <option value="income">Income</option>
@@ -45,21 +44,16 @@
     <?php else: echo "<br>";
     endif;
     ?>
-    <?php// print_r($_SESSION); ?>
 
-    <input type="submit" name="submitRB" value="Apply Changes">
+    <input type="submit" name="submitRB" value="Apply Changes" class="button">
     </form>
-    <table class="fl-table">
-    <thead>
+    <table>
     <tr>
         <th>Total</th>
         <th>Type</th>
         <th>Date</th>
         <th>Delete</th>
     </tr>
-    </thead>
-
-    <tbody>
     <?php 
         global $totalExpenses;
         global $totalIncome;
@@ -75,10 +69,10 @@
                     $totalIncome += $data['money'];
                 ?>
                 <tr>
-                    <th> <?php echo "Rp. " . number_format($data['money'],0,",",".") ?> </th>
-                    <th> <?php echo $data['type'] ?> </th>
-                    <th> <?php echo $data['date'] ?> </th>
-                    <th> <a href="controller.php?id=<?php echo $data['id']; ?>">Delete</a></th>
+                    <td> <?php echo "Rp. " . number_format($data['money'],0,",",".") ?> </td>
+                    <td> <?php echo $data['type'] ?> </td>
+                    <td> <?php echo $data['date'] ?> </td>
+                    <td> <a href="controller.php?id=<?php echo $data['id']; ?>">Delete</a></td>
                 </tr>      
         <?php
                 }
@@ -103,10 +97,10 @@
                     $totalExpenses += $data['money'];
                 ?>
                 <tr>
-                    <th> <?php echo "Rp. " . number_format($data['money'],0,",",".") ?> </th>
-                    <th> <?php echo $data['type'] ?> </th>
-                    <th> <?php echo $data['date'] ?> </th>
-                    <th> <a href="controller.php?id=<?php echo $data['id']; ?>">Delete</a></th>
+                    <td> <?php echo "Rp. " . number_format($data['money'],0,",",".") ?> </td>
+                    <td> <?php echo $data['type'] ?> </td>
+                    <td> <?php echo $data['date'] ?> </td>
+                    <td> <a href="controller.php?id=<?php echo $data['id']; ?>">Delete</a></td>
                 </tr>      
         <?php
                 }
@@ -131,10 +125,10 @@
                 }
                 ?>
                 <tr>
-                    <th> <?php echo "Rp. " . number_format($data['money'],0,",",".") ?> </th>
-                    <th> <?php echo $data['type'] ?> </th>
-                    <th> <?php echo $data['date'] ?> </th>
-                    <th> <a href="controller.php?id=<?php echo $data['id']; ?>">Delete</a></th>
+                    <td> <?php echo "Rp. " . number_format($data['money'],0,",",".") ?> </td>
+                    <td> <?php echo $data['type'] ?> </td>
+                    <td> <?php echo $data['date'] ?> </td>
+                    <td> <a href="controller.php?id=<?php echo $data['id']; ?>">Delete</a></td>
                 </tr>      
         <?php
             endforeach;
@@ -146,7 +140,7 @@
         ?>
         <?php endif; ?>
     <?php endif; ?>
-    </tbody>
+    
     </table>
 
     

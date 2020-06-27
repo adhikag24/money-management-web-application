@@ -1,0 +1,45 @@
+body{
+     background-color: cornflowerblue; 
+     font-family: 'Work Sans', sans-serif;
+     font-weight: 400;
+     
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Ultra', serif;
+    font-weight: 400;
+    color: #ffffff;
+}
+
+h1{
+    text-align: center;
+}
+
+.button {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background-color: #FFD900;
+}
+
+table {
+    border-collapse: collapse;
+  }
+   th {
+    background: #ccc;
+  }
+  
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+  
+  tr {
+    background: #efefef;
+  }
+  
+  tr:hover {
+    background: #d1d1d1;
+  }
