@@ -45,7 +45,7 @@
     <?php else: echo "<br>";
     endif;
     ?>
-    <?php print_r($_SESSION); ?>
+    <?php// print_r($_SESSION); ?>
 
     <input type="submit" name="submitRB" value="Apply Changes">
     </form>
