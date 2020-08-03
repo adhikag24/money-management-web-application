@@ -20,7 +20,7 @@
         $_SESSION["option"] = "none";
     }
 
-    $users_id = $_SESSION["id"];
+    $usersId = $_SESSION["id"];
 ?>
 <html lang="en">
 <head>
@@ -32,11 +32,6 @@
 </head>
 <body>
 <h1>Money Management</h1>
-    <?php var_dump($_SESSION['id']); ?>
-    <?php echo $_SESSION['id']; ?>
-    <?php var_dump($_SESSION['username']); ?>
-    <?php echo $_SESSION['username']; ?>
-    <?php echo $users_id; ?>
     <a href="logout.php" type="submit">Logout</a>
     <form action="controller.php" method="POST">
         <h2>Add:</h2> 
@@ -46,7 +41,7 @@
             <option value="outcome">Outcome</option>
             <option value="income">Income</option>
         </select>  <br> <br>
-        <input type="hidden" id="usersId" name="usersId" value="<?php echo $users_id; ?>">
+        <input type="hidden" id="usersId" name="usersId" value="<?php echo $usersId; ?>">
         <button type="submit" id="submit" name="submit" class="button">Submit</button>
     </form>
     <form method="POST">
@@ -75,7 +70,7 @@
     <?php 
         global $totalExpenses;
         global $totalIncome;
-        $record = new ViewRecord();
+        $record = new Show($usersId);
 
         if ($_SESSION["option"] == "income")://jika user memilih filter income
         if (!empty($record->showAllRecord())):

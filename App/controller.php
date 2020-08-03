@@ -3,14 +3,6 @@ require_once('Connection.php');
 require_once('Add.php');
 require_once('Delete.php');
 
-function debug_to_console($data) {
-    $output = $data;
-    if (is_array($output))
-        $output = implode(',', $output);
-
-    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
-}
-
 if (isset($_POST['submit'])){
     $money = $_POST['money'];
     $type = $_POST['type'];
@@ -22,8 +14,8 @@ if (isset($_POST['submit'])){
 
     
     $addDB = new Add($money, $type, $usersId);
-    $addDB->print_data();
-    // $addDB->addToDB();
+    // $addDB->print_data();
+    $addDB->addToDB();
 }
 
 if (isset($_GET['id'])){

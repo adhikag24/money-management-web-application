@@ -9,14 +9,13 @@ class Add extends Connection{
     function __construct($money, $type, $usersId){
         $this->money = $money;
         $this->type = $type;
-        $this->$usersId = $usersId;
-        echo $this->usersId;
+        $this->usersId = $usersId;
     }
 
     function print_data(){
         echo $this->money;
         echo $this->type;
-        echo $this->$usersId;
+        echo $this->usersId;
     }
     // money, type, users_id
     public function addToDB(){
