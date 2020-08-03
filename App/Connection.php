@@ -7,7 +7,7 @@ public $password;
 public $dbname;
 
 // Create connection
-    protected function connect(){
+    public function connect(){
         $this->servername = "localhost";
         $this->username = "root";
         $this->password = "";
@@ -18,6 +18,9 @@ public $dbname;
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
           }
-        return $conn;
+        else{
+            return $conn;
+        }
+       
     }
 }

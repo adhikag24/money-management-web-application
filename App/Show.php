@@ -3,7 +3,6 @@ require_once('connection.php');
 
 class Show extends Connection{
     
-
     public function showRecord(){
         $sql = "SELECT * FROM money_activity";
         $result = $this->connect()->query($sql);

@@ -3,6 +3,15 @@
     require_once('Show.php');
     require_once('ViewRecord.php');
     session_start();
+ 
+    // Check if the user is logged in, if not then redirect him to login page
+    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+        header("location: login.php");
+        exit;
+    }
+
+    $_SESSION["option"] = "none";//default value for option
+
     if ($_SESSION["option"] == "income"){
         $_SESSION["option"] = "income";
     }elseif ($_SESSION["option"] == "outcome"){
@@ -10,6 +19,8 @@
     }else{
         $_SESSION["option"] = "none";
     }
+
+    $users_id = $_SESSION["id"];
 ?>
 <html lang="en">
 <head>
@@ -21,6 +32,12 @@
 </head>
 <body>
 <h1>Money Management</h1>
+    <?php var_dump($_SESSION['id']); ?>
+    <?php echo $_SESSION['id']; ?>
+    <?php var_dump($_SESSION['username']); ?>
+    <?php echo $_SESSION['username']; ?>
+    <?php echo $users_id; ?>
+    <a href="logout.php" type="submit">Logout</a>
     <form action="controller.php" method="POST">
         <h2>Add:</h2> 
         Rp.
@@ -29,12 +46,13 @@
             <option value="outcome">Outcome</option>
             <option value="income">Income</option>
         </select>  <br> <br>
+        <input type="hidden" id="usersId" name="usersId" value="<?php echo $users_id; ?>">
         <button type="submit" id="submit" name="submit" class="button">Submit</button>
     </form>
     <form method="POST">
-    <label for="">Filter:</label> <br>
+         <label for="">Filter:</label> <br>
     <input type="radio"  name="filter" value="income" <?php if(isset($_POST['filter'])){ if($_POST['filter'] == 'income') {$_SESSION["option"] = "income"; echo ' checked="checked"';}} ?>>
-    <label for="">Income only</label><br>
+         <label for="">Income only</label><br>
     <input type="radio" name="filter" value="outcome"  <?php if(isset($_POST['filter'])){ if($_POST['filter'] == 'outcome') {$_SESSION["option"] = "outcome"; echo ' checked="checked"';}} ?>>
     <label for="">Outcome only</label> <br>
 
